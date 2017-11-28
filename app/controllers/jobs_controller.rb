@@ -7,6 +7,10 @@ class JobsController < ApplicationController
 
   def show
     @job = Job.find(params[:id])
+    if @job.is_hidden
+      flash[:warning] = "此檔案不存在"
+      redirect_to root_path
+    end
   end
 
   def new
